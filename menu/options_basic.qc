@@ -89,6 +89,17 @@ class options_basic : mitem_exmenu
 			super::set(key, newval);
 	};
 };
+
+struct
+{
+    string name;
+    string config;
+} hud_configs[] =
+{
+    {"Default", "config/hud/default.cfg"},
+    {"Swap", "config/hud/swap.cfg"}
+};
+
 nonstatic void(mitem_desktop desktop) M_Options_Basic =
 {
 	mitem_exmenu m;
@@ -188,7 +199,43 @@ nonstatic void(mitem_desktop desktop) M_Options_Basic =
                     "mcp_grentimer25.wav	\"25\" "
                     "mcp_grentimer26.wav	\"26\" "
                     )),	fl, [0, pos], [0, 8]); pos += 8;
+    pos += 8;
+    fr.add(
+            spawn(
+                mitem_text,
+                item_text:strcat("^{e080} ^a","HUD","^d ^{e082}"),
+                item_command:"",
+                item_scale:8,
+                item_flags:IF_CENTERALIGN
+                ),
+            RS_X_MIN_PARENT_MID|RS_Y_MIN_PARENT_MIN | RS_X_MAX_PARENT_MID|RS_Y_MAX_OWN_MIN,
+            [0, pos],
+            [0, 8]
+          ); pos += 8;
+    pos += 8;
 
+
+// Need to:
+// - update hud/default.cfg and hud/swap.cfg to include ALL hud settings
+// - follow pattern in old presets menu file for how to exec cfgs
+// something like:
+
+    local float i;
+    for (i = 0; i < hud_configs.length; i++) {
+        fr.add(
+                spawn(
+                    mitem_text,
+                    item_text:hud_configs[i].name,
+                    item_command:sprintf("exec %s; hud_recalculate", hud_configs[i].config),
+                    item_scale:8,
+                    item_flags:IF_CENTERALIGN
+                    ),
+                fl,
+                [0, pos],
+                [0, 8]
+              );
+        pos += 8;
+    }
 
 	/* fr.add(menuitemcheck_spawn (_("Simple Bunnyhop"),		"fo_autohop", 					'280 8'),	fl, [0, pos], [0, 8]); pos += 8; */
 	//fr.add(menuitemslider_spawn(_("TF Status Bar"),		"crosshair", 			'0.0 19 1', 	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
