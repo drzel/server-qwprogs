@@ -17,11 +17,8 @@ nonstatic void(mitem_desktop desktop) M_Options_Effects =
 	float pos = 0;
 
 	fr.add(menuitemcheck_spawn(_("Show Framerate"),			dp("showfps", "show_fps"), 		'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemcheck_spawn(_("Bloom"),				"r_bloom", 				'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemcheck_spawn(_("Simple Textures"),		"r_drawflat", 				'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemcheck_spawn(_("Paletted Rendering"),		"r_softwarebanding", 			'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemcheck_spawn(_("HDR"),				"r_hdr_irisadaptation", 		'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemcheck_spawn(_("Coronas"),			"r_coronas", 				'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemcheck_spawn(_("High Res Textures"),		"gl_load24bit", 			'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemcheck_spawn(_("Relief Mapping"),			"r_glsl_offsetmapping", 		'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemcheck_spawn(_("Realtime Dynamic Lights"),	"r_shadow_realtime_dlight", 		'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
@@ -31,8 +28,10 @@ nonstatic void(mitem_desktop desktop) M_Options_Effects =
 																		"lll	\"Blurry\" "
 															)),	fl, [0, pos], [0, 8]); pos += 8;
 
-
+	fr.add(menuitemcheck_spawn(_("Outlines"),				"gl_outline", 				'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemslider_spawn(_("Outline Width"),		"gl_outline",	'1 3 1',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemslider_spawn(_("Particle Density"),		"r_part_density",	'0.25 4 0.25',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemslider_spawn(_("Bloom"),		"r_bloom",	'0 0.5 0.05',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 
 	fr.add(menuitemcombo_spawn(_("Water Effects"),			"r_waterstyle",				'280 8', _(
 																		"1	\"Classic\" "
