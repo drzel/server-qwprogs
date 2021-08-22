@@ -60,12 +60,12 @@ nonstatic void(mitem_desktop desktop) M_Options_Video =
 																		"720 \"720\" "
 																		"1080	\"1080\" "
 																		)),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemcombo_spawn(_("Video Zoom"),	"vid_conautoscale",					'280 8', _(
-																		"0	\"Default\" "
-																		"1.5	\"x1.5\" "
-																		"2	\"x2\" "
-																		"4	\"x4\" "
-																		)),	fl, [0, pos], [0, 8]); pos += 8;
+	/* fr.add(menuitemcombo_spawn(_("Video Zoom"),	"vid_conautoscale",					'280 8', _( */
+	/* 																	"0	\"Default\" " */
+	/* 																	"1.5	\"x1.5\" " */
+	/* 																	"2	\"x2\" " */
+	/* 																	"4	\"x4\" " */
+	/* 																	)),	fl, [0, pos], [0, 8]); pos += 8; */
 	fr.add(menuitemcombo_spawn(_("Colour Depth"),	dp("vid_bitsperpixel", "vid_bpp"),	'280 8', _(
 																		"16	\"16bit\" "
 																		"32	\"24bit\" "	//alpha doesn't count.
@@ -81,7 +81,7 @@ nonstatic void(mitem_desktop desktop) M_Options_Video =
 	fr.add(menuitemslider_spawn(_("Field Of View"),	"fov",				'50 140 5', '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemslider_spawn(_("Gamma"),	"gamma",				'1.3 0.5 -0.1', '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemslider_spawn(_("Contrast"),	"contrast",				'0.7 2 0.1', '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemslider_spawn(_("Brightness"),	"brightness",			'0 0.4 0.05', '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	/* fr.add(menuitemslider_spawn(_("Brightness"),	"brightness",			'0 0.4 0.05', '280 8'),	fl, [0, pos], [0, 8]); pos += 8; */
 	fr.add(menuitemcombo_spawn(_("Hardware Gamma"),	"vid_hardwaregamma",			'280 8', 
 																		"0	\"Off\" "
 																		"1	\"Auto\" "
