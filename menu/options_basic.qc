@@ -97,7 +97,7 @@ struct
 } hud_configs[] =
 {
     {"Default", "config/hud/default.cfg"},
-    {"Swap", "config/hud/swap.cfg"}
+    {"Swap", "config/hud/swap.cfg"},
     {"Quake", "config/hud/quake.cfg"}
 };
 
