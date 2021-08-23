@@ -98,6 +98,7 @@ struct
 {
     {"Default", "config/hud/default.cfg"},
     {"Swap", "config/hud/swap.cfg"}
+    {"Quake", "config/hud/quake.cfg"}
 };
 
 nonstatic void(mitem_desktop desktop) M_Options_Basic =
