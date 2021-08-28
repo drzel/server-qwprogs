@@ -316,6 +316,7 @@ void () worldspawn = {
     clientstat(STAT_TEAMNO, EV_FLOAT, team_no);
     clientstat(STAT_READY, EV_FLOAT, is_ready);
     clientstat(STAT_CLASS, EV_FLOAT, playerclass);
+    clientstat(STAT_CURRENTWEAPON, EV_FLOAT, current_weapon);
 
     entity worldspawnent;
     worldspawnent = spawn();

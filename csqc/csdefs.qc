@@ -315,7 +315,7 @@ const float EV_VARIANT = 9;
 hashtable gamestate;	/* Special hash table index for hash_add and hash_get. Entries in this table will persist over map changes (and doesn't need to be created/deleted). */
 const float HASH_REPLACE = 256;	/* Used with hash_add. Attempts to remove the old value instead of adding two values for a single key. */
 const float STAT_HEALTH = 0;
-const float STAT_WEAPON = 2;
+const float STAT_WEAPONMODELI = 2;
 const float STAT_AMMO = 3;
 const float STAT_ARMOR = 4;
 const float STAT_WEAPONFRAME = 5;

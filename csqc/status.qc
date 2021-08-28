@@ -16,6 +16,58 @@ void(string panelid, float display, string text, string icon) drawClipSize = {
         if(id < 0) {
             return;
         }
+
+        switch(getstatf(STAT_CURRENTWEAPON)) {
+                case WEAP_MEDIKIT:
+                    icon = ICON_CELLS;
+                    break;
+                case WEAP_SPANNER:
+                    icon = ICON_CELLS;
+                    break;
+                case WEAP_SNIPER_RIFLE:
+                    icon = ICON_SHELLS;
+                    break;
+                case WEAP_AUTO_RIFLE:
+                    icon = ICON_SHELLS;
+                    break;
+                case WEAP_SHOTGUN:
+                    icon = ICON_SHELLS;
+                    break;
+                case WEAP_SUPER_SHOTGUN:
+                    icon = ICON_SHELLS;
+                    break;
+                case WEAP_NAILGUN:
+                    icon = ICON_NAILS;
+                    break;
+                case WEAP_SUPER_NAILGUN:
+                    icon = ICON_NAILS;
+                    break;
+                case WEAP_GRENADE_LAUNCHER:
+                    icon = ICON_ROCKETS;
+                    break;
+                case WEAP_FLAMETHROWER:
+                    icon = ICON_CELLS;
+                    break;
+                case WEAP_ROCKET_LAUNCHER:
+                    icon = ICON_ROCKETS;
+                    break;
+                case WEAP_INCENDIARY:
+                    icon = ICON_ROCKETS;
+                    break;
+                case WEAP_ASSAULT_CANNON:
+                    icon = ICON_SHELLS;
+                    break;
+                case WEAP_LIGHTNING:
+                    icon = ICON_CELLS;
+                    break;
+                case WEAP_TRANQ:
+                    icon = ICON_SHELLS;
+                    break;
+                case WEAP_LASER:
+                    icon = ICON_NAILS;
+                    break;
+        }
+
         Hud_DrawPanelLMP(getHudPanelPointer(id), text, icon);
     }
 };

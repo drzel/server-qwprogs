@@ -1408,6 +1408,10 @@
 
 
 #define ICON_CLIPSIZE "textures/wad/clipsize.png"
+#define ICON_CELLS "textures/wad/sb_cells.png"
+#define ICON_NAILS "textures/wad/sb_nails.png"
+#define ICON_ROCKETS "textures/wad/sb_rocket.png"
+#define ICON_SHELLS "textures/wad/sb_shells.png"
 #define ICON_FRAGSTREAK "textures/wad/fragstreak.png"
 #define ICON_CAPS "textures/wad/caps.png"
 #define ICON_IDENTIFY "textures/wad/identify.png"
@@ -1446,9 +1450,10 @@
 
 // stats
 // first 32 are reserved
-#define STAT_TEAMNO    33
-#define STAT_READY     34
-#define STAT_CLASS     35
+#define STAT_TEAMNO         33
+#define STAT_READY          34
+#define STAT_CLASS          35
+#define STAT_CURRENTWEAPON  35
 
 // Dimensions
 #define DMN_FLASH 1 // when flashed, we set dimension see to this
