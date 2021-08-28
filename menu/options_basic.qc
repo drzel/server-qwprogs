@@ -120,18 +120,18 @@ nonstatic void(mitem_desktop desktop) M_Options_Basic =
 	float pos = 0;
 	
 
-	fr.add(menuitemeditt_spawn(_("Player Name"), 		dp("_cl_name", "name"), 			'280 8'), 	fl, [0, pos], [0, 8]); pos += 8;
-	//fr.add(menuitemeditt_spawn(_("Player Team"), 		"team",						'280 8'), 	fl, [0, pos], [0, 8]); pos += 8;
-	//fr.add(menuitemcombo_spawn(_("Player Skin"), 		"skin",						'280 8', 	skinopts()), fl, [0, pos], [0, 8]); pos += 8;
-	//fr.add(menuitemcolour_spawn(_("Upper Colour"), 	"topcolor", 					'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	//fr.add(menuitemcolour_spawn(_("Lower Colour"), 	"bottomcolor", 					'280 8'),	fl, [0, pos], [0, 8]); pos += 8;	/*aka: arse colour*/
-	fr.add(menuitemcheck_spawn (_("Invert Mouse"),		"m_pitchsign", 					'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemslider_spawn(_("Sensitivity"),		"sensitivity", 			'0.1 5 0.1',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemslider_spawn(_("Gamma"),			dp("v_gamma", "gamma"), 	'0.8 1.2 0.05',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemslider_spawn(_("Contrast"),		dp("v_contrast", "contrast"), 	'0.8 1.2 0.05', 	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemslider_spawn(_("Field of Vision"),			"fov", 				'80 130 1',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemslider_spawn(_("Weapon Size"),		"r_viewmodel_fov", 		'80 130 1',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
-	fr.add(menuitemslider_spawn(_("Weapon Opacity"),		"r_drawviewmodel", 		'0 1 0.05',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemeditt_spawn(_("Player Name"), 		dp("_cl_name", "name"), 		                '280 8'), 	fl, [0, pos], [0, 8]); pos += 8;
+	//fr.add(menuitemcolour_spawn(_("Upper Colour"), 	"topcolor", 					                '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	//fr.add(menuitemcolour_spawn(_("Lower Colour"), 	"bottomcolor", 					                '280 8'),	fl, [0, pos], [0, 8]); pos += 8;	/*aka: arse colour*/
+	fr.add(menuitemcheck_spawn (_("Invert Mouse"),		"m_pitchsign", 					                '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemslider_spawn(_("Sensitivity"),		"sensitivity", 			        '0.1 5 0.1',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemslider_spawn(_("Gamma"),			    dp("v_gamma", "gamma"), 	    '0.8 1.2 0.05',	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemslider_spawn(_("Contrast"),		    dp("v_contrast", "contrast"), 	'0.8 1.2 0.05', '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemslider_spawn(_("Field of Vision"),	"fov", 				            '80 130 1',	    '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemslider_spawn(_("Weapon Size"),		"r_viewmodel_fov", 	        	'80 130 1',	    '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemslider_spawn(_("Weapon Opacity"),	"r_drawviewmodel", 	        	'0 1 0.05',	    '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemcheck_spawn (_("Show Death Messages"),    "msg_filter_frags",	                            '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemslider_spawn(_("Message lines"), 	"con_notifylines", 	        	'2 16 1',	    '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
     pos += 8;
     fr.add(
             spawn(
@@ -145,7 +145,6 @@ nonstatic void(mitem_desktop desktop) M_Options_Basic =
             [0, pos],
             [0, 8]
           ); pos += 8;
-    pos += 8;
 	fr.add(menuitemslider_spawn(_("Type"),		        "crosshair", 			'0.0 19 1', 	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemcolour_spawn(_("Color"), 		    "crosshaircolor", 		'280 8'), 	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemcheck_spawn (_("Use Team Color"),    "team_color_crosshair", '280 8'),	fl, [0, pos], [0, 8]); pos += 8;
@@ -162,7 +161,6 @@ nonstatic void(mitem_desktop desktop) M_Options_Basic =
             [0, pos],
             [0, 8]
           ); pos += 8;
-    pos += 8;
     fr.add(menuitemcombo_spawn (_("Timer"),		"fo_grentimer", 		'280 8', _(
                     "2	\"On\" "
                     "0	\"Silent\" "
@@ -209,13 +207,6 @@ nonstatic void(mitem_desktop desktop) M_Options_Basic =
             [0, pos],
             [0, 8]
           ); pos += 8;
-    pos += 8;
-
-
-// Need to:
-// - update hud/default.cfg and hud/swap.cfg to include ALL hud settings
-// - follow pattern in old presets menu file for how to exec cfgs
-// something like:
 
     local float i;
     for (i = 0; i < hud_configs.length; i++) {

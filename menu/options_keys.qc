@@ -5,7 +5,6 @@ const static struct
 } binds[] =
 {
 	{_(""),			"Movement"},
-	{0,				0},
 	{_("Move Forward"), 		"+forward"},
 	{_("Move Back"),	 		"+back"},
 	{_("Move Left"),		"+moveleft"},
@@ -21,7 +20,6 @@ const static struct
 	{0,				0},
 	{0,				0},
 	{_(""),			"Actions"},
-	{0,				0},
 	{_("Fire"),	 		"+attack"},
 	{_("Class Special"),			"special"},
 	{_("Class Menu"),			"fo_menu_special"},
@@ -38,7 +36,6 @@ const static struct
 	{0,				0},
 	{0,				0},
 	{_(""),			"Weapon Select"},
-	{0,				0},
 	{_("Next Weapon"),		"weapnext"},
 	{_("Prev Weapon"),		"weapprev"},
 	{_("Last Weapon"),		"weaplast"},
@@ -49,7 +46,6 @@ const static struct
 	{0,				0},
 	{0,				0},
 	{_(""),			"Advanced Weaponry"},
-	{0,				0},
 	{_("Fire Primary"),		        "+quick1"},
 	{_("Fire Secondary"),			"+quick2"},
 	{_("Fire Tertiary"),			"+quick3"},
@@ -66,7 +62,6 @@ const static struct
 	{0,				0},
 	{0,				0},
 	{_(""),			"Misc"},
-	{0,				0},
 	{_("Scores"),			"+fo_showscores"},
 	{_("Ready Up"),			"ready"},
 	{_("Server Chat"),		"messagemode"},
@@ -144,8 +139,18 @@ void(mitem_desktop desktop) M_Options_Keys =
 		{
 			if (binds[i].name == "") {	//no name is a spacer
 				if(binds[i].cmd) {
-					fr.add(spawn(mitem_text, item_text:strcat("^{e080} ^a",binds[i].cmd,"^d ^{e082}"), item_command:"", item_scale:8, item_flags:IF_CENTERALIGN), RS_X_MIN_PARENT_MID|RS_Y_MIN_PARENT_MIN | RS_X_MAX_PARENT_MID|RS_Y_MAX_OWN_MIN, [0, (i*8)], [0, 8]);
-					i ++;
+					fr.add(
+                            spawn(
+                                mitem_text,
+                                item_text:strcat("^{e080} ^a",binds[i].cmd,"^d ^{e082}"),
+                                item_command:"",
+                                item_scale:8,
+                                item_flags:IF_CENTERALIGN
+                                ),
+                            RS_X_MIN_PARENT_MID|RS_Y_MIN_PARENT_MIN | RS_X_MAX_PARENT_MID|RS_Y_MAX_OWN_MIN,
+                            [0, (i*8)],
+                            [0, 8]
+                          );
 				}
 				continue;
 			}
