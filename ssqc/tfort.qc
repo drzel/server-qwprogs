@@ -1256,13 +1256,8 @@ void (entity p) TeamFortress_SetSpeed = {
         p.maxfbspeed = PC_DEMOMAN_MAXSPEED;
         p.maxstrafespeed = PC_DEMOMAN_MAXSTRAFESPEED;
     } else if (p.playerclass == PC_MEDIC) {
-        if (medic_type == MEDIC_TYPE_BLAST) {
-            p.maxfbspeed = PC_BLASTMEDIC_MAXSPEED;
-            p.maxstrafespeed = PC_BLASTMEDIC_MAXSTRAFESPEED;
-        } else {
-            p.maxfbspeed = PC_MEDIC_MAXSPEED;
-            p.maxstrafespeed = PC_MEDIC_MAXSTRAFESPEED;
-        }
+        p.maxfbspeed = PC_MEDIC_MAXSPEED;
+        p.maxstrafespeed = PC_MEDIC_MAXSTRAFESPEED;
     } else if (p.playerclass == PC_HVYWEAP) {
         p.maxfbspeed = PC_HVYWEAP_MAXSPEED;
         p.maxstrafespeed = PC_HVYWEAP_MAXSTRAFESPEED;
