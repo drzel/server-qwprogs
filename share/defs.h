@@ -257,6 +257,7 @@
 #define TFSTATE_FLAMES_MAX		131072
 #define TFSTATE_FLASHED			262144
 #define TFSTATE_CONCUSSED		524288
+#define TFSTATE_BLASTED		1048576
 
 // Defines used by TF_T_Damage (see combat.qc)
 #define TF_TD_IGNOREARMOR	1  // Bypasses the armor of the target

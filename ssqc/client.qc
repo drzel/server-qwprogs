@@ -569,6 +569,9 @@ void () DecodeLevelParms = {
         // concussion grenade effect time [19]
         cussgrentime = CF_GetSetting("cgt", "cussgrentime", "19");
 
+        // concussion grenade effect time [19]
+        blastgrentime = CF_GetSetting("bgt", "blastgrentime", "19");
+
         // concussion grenade effect time proportional to distance from explosion
         distance_based_cuss_duration = CF_GetSetting("dbcd", "distance_based_cuss_duration", "off");
 
@@ -952,6 +955,7 @@ void () DecodeLevelParms = {
             drop_gren1 = 0;
             drop_gren2 = 0;
             cussgrentime = 19;
+            blastgrentime = 19;
             spawnfull = FALSE;
             stockfull = FALSE;
             stock_on_cap = FALSE;
@@ -2347,15 +2351,16 @@ void () PlayerJump = {
             TeamFortress_SetSpeed(self);
         }
     }
+
     if (old_grens != 1) {
         te = find(world, classname, "timer");
-        while (((te.owner != self) || (te.think != ConcussionGrenadeTimer))
-               && (te != world))
+        while (((te.owner != self) || (te.think != ConcussionGrenadeTimer)) && (te != world))
             te = find(te, classname, "timer");
 
         if ((te != world) && (te != self)) {
             crandom();
             stumble = crandom() * (te.health / 100);
+
             if (crandom() < 0) {
                 self.velocity_x = self.velocity_y + stumble;
                 self.velocity_y = self.velocity_x + stumble;
@@ -2489,7 +2494,9 @@ void () PlayerPreThink = {
         IntermissionThink();
         return;
     }
+
     makevectors(self.v_angle);
+
     if (self.view_ofs == '0 0 0') {
         return;
     }
@@ -2548,9 +2555,11 @@ void () PlayerPreThink = {
             self.flags = self.flags | FL_JUMPRELEASED;
         }
     }
+
     if ((time < self.pausetime) || (cease_fire == 1)) {
         self.velocity = '0 0 0';
     }
+
     if (time > self.attack_finished && !self.currentammo && self.weapon > WEAP_AXE) {
         W_ChangeWeapon(W_BestWeaponSlot());
         W_SetCurrentAmmo(self);

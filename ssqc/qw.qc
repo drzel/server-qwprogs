@@ -31,6 +31,7 @@ typedef void (float n) f_void_float;
 .float is_zooming;              // TRUE for a SNIPER if they're currently zoomed in
 .float is_quickfiring;          // TRUE for a player if they're using the quick slots
 .float is_concussed;            // TRUE for a player who is affected by concussion grenade
+.float aircurve;                // Multiplier on air speed. No air curve (0), normal (1), heaps (2)
 .float has_quickfired;          // TRUE for a player that has stopped quick firing (until weapon is ready)
 .float has_throwngren;          // TRUE for a player that has thrown a grenade (won't get a free suicide)
 .float has_changedteam;         // TRUE for a player that has changed team
@@ -562,6 +563,7 @@ float stock_on_cap;
 float stock_reload;
 float classtips;
 float cussgrentime;
+float blastgrentime;
 float medicnocuss;
 float distance_based_cuss_duration;
 float sniperpower;
