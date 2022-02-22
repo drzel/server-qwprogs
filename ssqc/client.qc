@@ -569,8 +569,8 @@ void () DecodeLevelParms = {
         // concussion grenade effect time [19]
         cussgrentime = CF_GetSetting("cgt", "cussgrentime", "19");
 
-        // concussion grenade effect time [19]
-        blastgrentime = CF_GetSetting("bgt", "blastgrentime", "19");
+        // concussion grenade effect time [2]
+        blastgrentime = CF_GetSetting("bgt", "blastgrentime", "2");
 
         // concussion grenade effect time proportional to distance from explosion
         distance_based_cuss_duration = CF_GetSetting("dbcd", "distance_based_cuss_duration", "off");
