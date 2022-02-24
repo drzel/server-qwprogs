@@ -517,33 +517,14 @@ void () BlastGrenadeTimer = {
         dremove(self);
         return;
     }
+    self.owner.aircurve = (((40 * blastgrentime) - (self.health * blastgrenstrength)) / (40 * blastgrentime));
+    TeamFortress_SetSpeed(self.owner);
 
     self.nextthink = time + 0.25;
-
-    if ((self.health == 200) || (self.health == 400) || (self.health == 600) || (self.health == 800) || (self.health == 1000)) {
-        newmis = spawn();
-        FO_SetModel(newmis, "progs/s_bubble.spr");
-        setorigin(newmis, self.owner.origin);
-        newmis.movetype = MOVETYPE_NOCLIP;
-        newmis.solid = SOLID_NOT;
-        newmis.velocity = '0 0 15';
-        newmis.nextthink = time + 0.5;
-        newmis.think = bubble_bob;
-        newmis.touch = bubble_remove;
-        newmis.classname = "bubble";
-        newmis.frame = 0;
-        newmis.cnt = 0;
-        setsize(newmis, '-8 -8 -8', '8 8 8');
-    }
-
     self.health = self.health - 10;
 
     if (self.health < 0)
         self.health = 0;
-
-    self.owner.aircurve = ((40 * blastgrentime) - self.health) / (40 * blastgrentime);
-
-    TeamFortress_SetSpeed(self.owner);
 
     if (self.health <= 0) {
         sprint(self.owner, PRINT_HIGH, "Your air-control is back to normal\n");

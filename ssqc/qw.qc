@@ -564,6 +564,7 @@ float stock_reload;
 float classtips;
 float cussgrentime;
 float blastgrentime;
+float blastgrenstrength;
 float medicnocuss;
 float distance_based_cuss_duration;
 float sniperpower;

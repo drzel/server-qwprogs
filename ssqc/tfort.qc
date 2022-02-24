@@ -671,6 +671,8 @@ void () TeamFortress_ShowTF = {
     sprint(self, PRINT_HIGH, "Blast effect lasts ");
     sprint(self, PRINT_HIGH, ftos(blastgrentime));
     sprint(self, PRINT_HIGH, " seconds");
+    sprint(self, PRINT_HIGH, "Blast effect strength ");
+    sprint(self, PRINT_HIGH, ftos(blastgrenstrength));
 
     sprint(self, PRINT_HIGH, "\n== Scout ==\n");
     CF_PrintSetting("Scout dash ability", scoutdash, "", 1);
