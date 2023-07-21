@@ -66,6 +66,7 @@ nonstatic void(mitem_desktop desktop) M_Options_Video =
 																		"2	\"x2\" "
 																		"4	\"x4\" "
 																		)),	fl, [0, pos], [0, 8]); pos += 8;
+	fr.add(menuitemcheck_spawn(_("Overbright"),	"gl_overbright", 	'280 8'),	fl, [0, pos], [0, 8]); pos += 8;
 	fr.add(menuitemcombo_spawn(_("Colour Depth"),	dp("vid_bitsperpixel", "vid_bpp"),	'280 8', _(
 																		"16	\"16bit\" "
 																		"32	\"24bit\" "	//alpha doesn't count.
