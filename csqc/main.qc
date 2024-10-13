@@ -191,6 +191,7 @@ noref void(float apiver, string enginename, float enginever) CSQC_Init = {
     precache_model("progs/turrpreview.mdl");
     sentry_preview = spawn();
     setmodel(sentry_preview, "progs/turrpreview.mdl");
+    setsize(sentry_preview, '-16 -16 0', '16 16 48');
     sentry_preview.alpha = 0.25;
 
     precache_model("progs/sphere.mdl");
@@ -217,6 +218,20 @@ void UpdateTeamColorCrosshair();
 void PMD_DrawGraphs(float width);
 
 DEFCVAR_FLOAT(fov, 90);
+
+void adjustEntityAboveGround(entity ent) {
+    vector startPos, endPos;
+
+    // Define start and end points for the trace downwards
+    startPos = ent.origin + '0 0 100';  // Start 100 units above the entity's origin
+    endPos = ent.origin - '0 0 1000';   // Trace downwards a sufficient distance
+
+    // Perform the tracebox from startPos to endPos
+    tracebox(startPos, ent.mins, ent.maxs, endPos, MOVE_NORMAL, ent);
+
+    // Move the entity up to be 1 unit above the ground
+    ent.origin[2] = trace_endpos[2] - (ent.mins[2] - ent.maxs[2]) + 1; // 1 unit above the ground
+}
 
 noref void(float width, float height, float menushown) CSQC_UpdateView = {
     float fts = perf_start_sample(&frame_timing);
@@ -250,6 +265,7 @@ noref void(float width, float height, float menushown) CSQC_UpdateView = {
         v_forward_sentry.y = xy_pos.y;
 
         sentry_preview.origin = PM_Org() + v_forward_sentry;
+        adjustEntityAboveGround(sentry_preview);
         sentry_preview_range_sphere.origin = sentry_preview.origin;
         sentry_preview.angles_y = anglemod(view_angles_y + sentry_preview_offset);
     } else {
