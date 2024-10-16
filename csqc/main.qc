@@ -230,7 +230,7 @@ void adjustEntityAboveGround(entity ent) {
     tracebox(startPos, ent.mins, ent.maxs, endPos, MOVE_NORMAL, ent);
 
     // Move the entity up to be 1 unit above the ground
-    ent.origin[2] = trace_endpos[2] - (ent.mins[2] - ent.maxs[2]) + 1; // 1 unit above the ground
+    ent.origin[2] = trace_endpos[2] + 1; // 1 unit above the ground
 }
 
 noref void(float width, float height, float menushown) CSQC_UpdateView = {
@@ -265,7 +265,7 @@ noref void(float width, float height, float menushown) CSQC_UpdateView = {
         v_forward_sentry.y = xy_pos.y;
 
         sentry_preview.origin = PM_Org() + v_forward_sentry;
-        adjustEntityAboveGround(sentry_preview);
+        /* adjustEntityAboveGround(sentry_preview); */
         sentry_preview_range_sphere.origin = sentry_preview.origin;
         sentry_preview.angles_y = anglemod(view_angles_y + sentry_preview_offset);
     } else {
@@ -879,7 +879,7 @@ void _Sync_ServerCommandFrame() {
 
     if (previewing_sentry) {
         if (game_state.is_alive) {
-            sentry_fits = CheckArea(sentry_preview, player_localentnum);
+            sentry_fits = CheckArea(sentry_preview, edict_num(player_localentnum));
             sentry_preview.colormod = sentry_fits ? '1 1 1' : '0.5 0.2 0.2';
         } else {
             SentryPreviewStop();
