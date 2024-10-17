@@ -265,7 +265,7 @@ float UpdateFlag(float isnew) {
     return TRUE;
 }
 
-float UpdateTurret(float isnew) {
+float UpdateSentry(float isnew) {
     if (isnew) {
         sentry_angles_y = self.angles_y;
     } else {
@@ -273,6 +273,22 @@ float UpdateTurret(float isnew) {
             self.angles_y = sentry_angles_y;
         } else {
             sentry_angles_y = self.angles_y;
+        }
+    }
+
+    return TRUE;
+}
+
+float UpdateSentryBase(float isnew) {
+    if (isnew) {
+        sentry_angles_y = self.angles_y;
+    } else {
+        if (!SBAR.SentryLevel && SBAR.IsBuilding) {
+            if (update_sentry_angles > time) {
+                self.angles_y = sentry_angles_y;
+            } else {
+                sentry_angles_y = self.angles_y;
+            }
         }
     }
 
@@ -325,5 +341,6 @@ void TF_Init() {
 
     shader_over_outline = shaderforname(rnds("over_outline"), "{ sort 7 }");
 #endif
-    deltalisten("progs/turrgun.mdl", UpdateTurret, 0);
+    deltalisten("progs/turrgun.mdl", UpdateSentry, 0);
+    deltalisten("progs/turrbase.mdl", UpdateSentryBase, 0);
 }
