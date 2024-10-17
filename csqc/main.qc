@@ -349,7 +349,9 @@ noref float(string cmd) CSQC_ConsoleCommand = {
                     if (previewing_sentry) {
                         sentry_preview_offset = anglemod(sentry_preview_offset - 15);
                     } else {
-                        localcmd("cmd sentry rotate 15\n");
+                        update_sentry_angles = time + 0.5;
+                        sentry_angles_y = anglemod(sentry_angles_y - 15);
+                        localcmd(sprintf("cmd sentry angle %f\n", sentry_angles_y));
                     }
                     break;
             }
@@ -360,7 +362,9 @@ noref float(string cmd) CSQC_ConsoleCommand = {
                     if (previewing_sentry) {
                         sentry_preview_offset = anglemod(sentry_preview_offset + 15);
                     } else {
-                        localcmd("cmd sentry rotate -15\n");
+                        update_sentry_angles = time + 0.5;
+                        sentry_angles_y = anglemod(sentry_angles_y + 15);
+                        localcmd(sprintf("cmd sentry angle %f\n", sentry_angles_y));
                     }
                     break;
             }
