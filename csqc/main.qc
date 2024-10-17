@@ -219,18 +219,38 @@ void PMD_DrawGraphs(float width);
 
 DEFCVAR_FLOAT(fov, 90);
 
-void adjustEntityAboveGround(entity ent) {
-    vector startPos, endPos;
+void SentryPreviewStart() {
+    sentry_preview_offset = 0;
+    sentry_preview.angles_y = input_angles_y;
+    sentry_preview.drawmask = MASK_ENGINE;
 
-    // Define start and end points for the trace downwards
-    startPos = ent.origin + '0 0 100';  // Start 100 units above the entity's origin
-    endPos = ent.origin - '0 0 1000';   // Trace downwards a sufficient distance
+    local vector sphere_colormod = '1 1 1';
+    switch (team_no) {
+        case 1:
+            sphere_colormod = '0 0.4 1';
+            break;
+        case 2:
+            sphere_colormod = '1 0 0';
+            break;
+        case 3:
+            sphere_colormod = '1 1 0';
+            break;
+        case 4:
+            sphere_colormod = '0 1 0';
+            break;
+    }
 
-    // Perform the tracebox from startPos to endPos
-    tracebox(startPos, ent.mins, ent.maxs, endPos, MOVE_NORMAL, ent);
+    sentry_preview_range_sphere.colormod = sphere_colormod * 4;
+    sentry_preview_range_sphere.drawmask = MASK_ENGINE;
 
-    // Move the entity up to be 1 unit above the ground
-    ent.origin[2] = trace_endpos[2] + 1; // 1 unit above the ground
+    previewing_sentry = TRUE;
+    prevent_firing = TRUE;
+}
+
+void SentryPreviewStop() {
+    previewing_sentry = FALSE;
+    sentry_preview.drawmask = 0;
+    sentry_preview_range_sphere.drawmask = 0;
 }
 
 noref void(float width, float height, float menushown) CSQC_UpdateView = {
@@ -256,6 +276,16 @@ noref void(float width, float height, float menushown) CSQC_UpdateView = {
         PM_UpdateView();
 
     if (previewing_sentry) {
+        if (game_state.is_alive) {
+        } else {
+        }
+    }
+
+    if (previewing_sentry) {
+        if (!game_state.is_alive) {
+            SentryPreviewStop();
+        } else {
+        }
         makevectors(view_angles);
         local vector v_forward_sentry;
         v_forward_sentry.z = (normalize(v_forward) * 64).z;
@@ -265,7 +295,8 @@ noref void(float width, float height, float menushown) CSQC_UpdateView = {
         v_forward_sentry.y = xy_pos.y;
 
         sentry_preview.origin = PM_Org() + v_forward_sentry;
-        /* adjustEntityAboveGround(sentry_preview); */
+        sentry_fits = PlaceSentry(sentry_preview, PM_Org());
+        sentry_preview.colormod = sentry_fits ? '1 1 1' : '0.5 0.2 0.2';
         sentry_preview_range_sphere.origin = sentry_preview.origin;
         sentry_preview.angles_y = anglemod(view_angles_y + sentry_preview_offset);
     } else {
@@ -320,7 +351,7 @@ noref float(string cmd) CSQC_ConsoleCommand = {
                     } else {
                         localcmd("cmd sentry rotate 15\n");
                     }
-                break;
+                    break;
             }
             break;
         case "specialdown":
@@ -331,7 +362,7 @@ noref float(string cmd) CSQC_ConsoleCommand = {
                     } else {
                         localcmd("cmd sentry rotate -15\n");
                     }
-                break;
+                    break;
             }
             break;
         case "+slot":
@@ -718,40 +749,6 @@ void FO_ApplyCussInput() {
 
 void PM_InputFrame();
 
-void SentryPreviewStart() {
-    sentry_preview_offset = 0;
-    sentry_preview.angles_y = input_angles_y;
-    sentry_preview.drawmask = MASK_ENGINE;
-
-    local vector sphere_colormod = '1 1 1';
-    switch (team_no) {
-        case 1:
-            sphere_colormod = '0 0.4 1';
-            break;
-        case 2:
-            sphere_colormod = '1 0 0';
-            break;
-        case 3:
-            sphere_colormod = '1 1 0';
-            break;
-        case 4:
-            sphere_colormod = '0 1 0';
-            break;
-    }
-
-    sentry_preview_range_sphere.colormod = sphere_colormod * 4;
-    sentry_preview_range_sphere.drawmask = MASK_ENGINE;
-
-    previewing_sentry = TRUE;
-    prevent_firing = TRUE;
-}
-
-void SentryPreviewStop() {
-    previewing_sentry = FALSE;
-    sentry_preview.drawmask = 0;
-    sentry_preview_range_sphere.drawmask = 0;
-}
-
 noref void CSQC_Input_Frame() {
     local float changed_buttons = input_buttons ^ oldbuttons;
     oldbuttons = input_buttons;
@@ -876,15 +873,6 @@ void _Sync_ServerCommandFrame() {
 
     CsGrenTimer::UpdateSoundStack();
     UpdateTeamColorCrosshair();
-
-    if (previewing_sentry) {
-        if (game_state.is_alive) {
-            sentry_fits = CheckArea(sentry_preview, edict_num(player_localentnum));
-            sentry_preview.colormod = sentry_fits ? '1 1 1' : '0.5 0.2 0.2';
-        } else {
-            SentryPreviewStop();
-        }
-    }
 }
 
 
