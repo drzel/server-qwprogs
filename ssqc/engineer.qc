@@ -626,6 +626,11 @@ void (float objtobuild, float offset) TeamFortress_Build = {
     }
 
     UpdateClientBuilding(self);
+
+    if (objtobuild == BUILD_SENTRYGUN) {
+        UpdateClient_Sentry(self, newmis);
+    }
+
     self.is_building = objtobuild;
     if (!engineer_move) {
         self.immune_to_check = time + 5;
@@ -928,18 +933,6 @@ void () DispenserThink = {
 
     self.nextthink = time + 0.3;
 };
-
-void UpdateClient_Sentry(entity pl, entity sent) = {
-    if(!infokeyf(pl, INFOKEY_P_CSQCACTIVE))
-        return;
-    msg_entity = pl;
-    WriteByte(MSG_MULTICAST, SVC_CGAMEPACKET); 
-    WriteByte(MSG_MULTICAST, MSG_SENTRY_POS);
-    WriteFloat(MSG_MULTICAST, sent.origin.x);
-    WriteFloat(MSG_MULTICAST, sent.origin.y);
-    WriteFloat(MSG_MULTICAST, sent.origin.z);
-    multicast('0 0 0', MULTICAST_ONE_NOSPECS); 
-}
 
 void UpdateClient_Dispenser(entity pl, entity disp) = {
     if(!infokeyf(pl, INFOKEY_P_CSQCACTIVE))

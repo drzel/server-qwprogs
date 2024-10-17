@@ -348,8 +348,8 @@ noref float(string cmd) CSQC_ConsoleCommand = {
                 case PC_ENGINEER:
                     if (previewing_sentry) {
                         sentry_preview_offset = anglemod(sentry_preview_offset - 15);
-                    } else {
-                        update_sentry_angles = time + 0.5;
+                    } else if (vlen(PM_Org() - sentry_pos) < ENG_BUILDING_DISMANTLE_DISTANCE) {
+                        update_sentry_angles = time + 0.55;
                         sentry_angles_y = anglemod(sentry_angles_y - 15);
                         localcmd(sprintf("cmd sentry angle %f\n", sentry_angles_y));
                     }
@@ -361,8 +361,8 @@ noref float(string cmd) CSQC_ConsoleCommand = {
                 case PC_ENGINEER:
                     if (previewing_sentry) {
                         sentry_preview_offset = anglemod(sentry_preview_offset + 15);
-                    } else {
-                        update_sentry_angles = time + 0.5;
+                    } else if (vlen(PM_Org() - sentry_pos) < ENG_BUILDING_DISMANTLE_DISTANCE) {
+                        update_sentry_angles = time + 0.55;
                         sentry_angles_y = anglemod(sentry_angles_y + 15);
                         localcmd(sprintf("cmd sentry angle %f\n", sentry_angles_y));
                     }
