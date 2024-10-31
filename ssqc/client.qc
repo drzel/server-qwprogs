@@ -564,7 +564,7 @@ void () DecodeLevelParms = {
         pipecooldown_time = CF_GetSetting("pcdt", "pipecooldown_time", "0.5");
 
         // cooldown applies to all pipes [on]
-        allpipes_cooldown = CF_GetSetting("apcd", "allpipes_cooldown", "on");
+        allpipes_cooldown = CF_GetSetting("apcd", "allpipes_cooldown", "off");
 
         // allow medic aura [on]
         medicaura = CF_GetSetting("ma", "medicaura", "on");
