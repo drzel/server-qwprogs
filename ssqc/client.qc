@@ -289,8 +289,6 @@ static float NB_UseMinPing() {
 void ActivateOrgGame() {
     disable_resup_gren = 2;  // No gren2 pickups
 
-    drop_gren1 = 0;  // No grenades in backpacks
-
     int i;
     for (i = 1; i <= 9; i++) // 3 gren spawn
         SetAllRoles(i, 1, 3);
