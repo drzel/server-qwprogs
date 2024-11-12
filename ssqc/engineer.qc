@@ -612,6 +612,8 @@ void (float objtobuild, float offset) TeamFortress_Build = {
         self.sentry_ticks = 0;
     }
 
+    setsize(newmis, tmp1, tmp2);
+
     if (!PlaceSentry(newmis, self.origin)) {
         sprint(self, PRINT_HIGH, "You can't build here\n");
         dremove(newmis);
@@ -652,7 +654,6 @@ void (float objtobuild, float offset) TeamFortress_Build = {
     newmis.movetype = 6;
     newmis.solid = 2;
     FO_SetModel(newmis, newmis.mdl);
-    setsize(newmis, tmp1, tmp2);
     setorigin(newmis, newmis.origin);
     newmis.flags = newmis.flags - (newmis.flags & 512);
 
